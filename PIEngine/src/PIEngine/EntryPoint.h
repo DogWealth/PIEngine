@@ -5,7 +5,10 @@ extern PIEngine::Application* PIEngine::CreatApplication();
 
 int main(int arc, char** argv)
 {
-	printf("PI Engine!\n");
+	PIEngine::Log::Init();
+	PI_CORE_WARN("Initialized Log!");
+	PI_INFO("Hello PI!");
+
 	auto app = PIEngine::CreatApplication();
 	app->Run();
 	delete app;

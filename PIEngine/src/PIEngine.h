@@ -1,7 +1,7 @@
 #pragma once
 
 //for use by PIEngine Application
-#include <stdio.h>
+#include "PIEngine/Log.h"
 #include "PIEngine/Application.h"
 
 //entry point

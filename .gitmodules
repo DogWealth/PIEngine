@@ -1,0 +1,3 @@
+[submodule "PIEngine/vendor/spdlog"]
+	path = PIEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog
