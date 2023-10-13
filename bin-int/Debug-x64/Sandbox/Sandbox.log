@@ -1,6 +1,0 @@
-﻿  SandboxApp.cpp
-D:\Github\PIEngine\PIEngine\src\PIEngine\Log.h(16,42): warning C4251: “PIEngine::Log::s_CoreLogger”: class“std::shared_ptr<spdlog::logger>”需要有 dll 接口由 class“PIEngine::Log”的客户端使用
-D:\Github\PIEngine\PIEngine\vendor\spdlog\include\spdlog\details\registry.h(33,31): message : 参见“std::shared_ptr<spdlog::logger>”的声明
-D:\Github\PIEngine\PIEngine\src\PIEngine\Log.h(17,42): warning C4251: “PIEngine::Log::s_ClientLogger”: class“std::shared_ptr<spdlog::logger>”需要有 dll 接口由 class“PIEngine::Log”的客户端使用
-D:\Github\PIEngine\PIEngine\vendor\spdlog\include\spdlog\details\registry.h(33,31): message : 参见“std::shared_ptr<spdlog::logger>”的声明
-  Sandbox.vcxproj -> D:\Github\PIEngine\bin\Debug-x64\Sandbox\Sandbox.exe
