@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.h"
+#include "Events/Event.h"
 namespace PIEngine {
 
 	class PI_API Application

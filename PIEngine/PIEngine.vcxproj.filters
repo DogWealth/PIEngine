@@ -4,6 +4,9 @@
     <Filter Include="PIEngine">
       <UniqueIdentifier>{74E695EC-60B3-F0F7-89CC-DE9F75F82586}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PIEngine\Events">
+      <UniqueIdentifier>{D8478151-44D3-EE15-4DE4-710AB9EE4A16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PIEngine.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\PIEngine\EntryPoint.h">
       <Filter>PIEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PIEngine\Events\ApplicationEvent.h">
+      <Filter>PIEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PIEngine\Events\Event.h">
+      <Filter>PIEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PIEngine\Events\KeyEvent.h">
+      <Filter>PIEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PIEngine\Events\MouseEvent.h">
+      <Filter>PIEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\PIEngine\Log.h">
       <Filter>PIEngine</Filter>
