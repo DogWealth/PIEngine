@@ -1,8 +1,6 @@
 #pragma once
 
 #include "PIEngine/Core.h"
-#include <string>
-#include <functional>
 
 namespace PIEngine {
 	enum class EventType //https://zhuanlan.zhihu.com/p/630946141

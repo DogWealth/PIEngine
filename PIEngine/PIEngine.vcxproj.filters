@@ -34,6 +34,7 @@
     <ClInclude Include="src\PIEngine\Log.h">
       <Filter>PIEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\pipch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PIEngine\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\PIEngine\Log.cpp">
       <Filter>PIEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\pipch.cpp" />
   </ItemGroup>
 </Project>

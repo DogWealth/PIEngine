@@ -19,6 +19,9 @@ project "PIEngine"
 	targetdir("bin/" ..outputdir .. "/%{prj.name}")
 	objdir("bin-int/" ..outputdir .. "/%{prj.name}")
 
+	pchheader "pipch.h"
+	pchsource "PIEngine/src/pipch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

@@ -1,6 +1,5 @@
 #pragma once
 #include "Event.h"
-#include <sstream>
 
 namespace PIEngine {
 	class PI_API KeyEvent : public Event

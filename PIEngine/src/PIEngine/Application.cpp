@@ -1,3 +1,4 @@
+#include "pipch.h"
 #include "Application.h"
 #include "PIEngine/Events/ApplicationEvent.h"
 #include "PIEngine/Log.h"
