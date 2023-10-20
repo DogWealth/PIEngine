@@ -11,6 +11,10 @@ workspace "PIEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "PIEngine/vendor/GLFW/include"
+include "PIEngine/vendor/GLFW"
+
 project "PIEngine"
 	location "PIEngine"
 	kind "SharedLib"
@@ -31,7 +35,15 @@ project "PIEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib",
+		"Dwmapi.lib"
 	}
 
 	filter "system:windows"
