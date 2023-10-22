@@ -37,6 +37,12 @@
     <ClInclude Include="src\PIEngine\Events\MouseEvent.h">
       <Filter>PIEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\PIEngine\Layer.h">
+      <Filter>PIEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PIEngine\LayerStack.h">
+      <Filter>PIEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\PIEngine\Log.h">
       <Filter>PIEngine</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PIEngine\Application.cpp">
+      <Filter>PIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PIEngine\Layer.cpp">
+      <Filter>PIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PIEngine\LayerStack.cpp">
       <Filter>PIEngine</Filter>
     </ClCompile>
     <ClCompile Include="src\PIEngine\Log.cpp">

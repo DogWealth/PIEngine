@@ -37,7 +37,7 @@ namespace PIEngine {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent: " << GetXOffset << ", " << GetYOffset();
+			ss << "MouseMovedEvent: " << GetXOffset() << ", " << GetYOffset();
 			return ss.str();
 		}
 

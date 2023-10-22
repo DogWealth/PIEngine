@@ -44,7 +44,6 @@ namespace PIEngine {
 
 	//private是完全私有的，只有自己可以访问，派生类和外部都不可以访问
 	//protected是受保护的，只有派生类可以访问，外部不能访问
-	protected:
 		bool m_Handled = false;
 	};
 
