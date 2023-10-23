@@ -4,6 +4,8 @@
 #include "PIEngine/Events/KeyEvent.h"
 #include "PIEngine/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace PIEngine {
 	static bool s_GLFWInitialized = false;
 
@@ -46,6 +48,8 @@ namespace PIEngine {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);//设置参数window中的窗口所关联的OpenGL环境为当前环境
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		PI_CORE_ASSERT(status, "Falied to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);//将自定义的指针数据关联到指定窗口上
 		SetVSync(true);
 

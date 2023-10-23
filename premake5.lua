@@ -13,7 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "PIEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "PIEngine/vendor/Glad/include"
+
 include "PIEngine/vendor/GLFW"
+include "PIEngine/vendor/Glad"
 
 project "PIEngine"
 	location "PIEngine"
@@ -36,12 +39,14 @@ project "PIEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib",
 		"Dwmapi.lib"
 	}
@@ -54,7 +59,8 @@ project "PIEngine"
 		defines
 		{
 			"PI_PLATFORM_WINDOWS",
-			"PI_BUILD_DLL"
+			"PI_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
