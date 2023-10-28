@@ -1,6 +1,7 @@
 #include "pipch.h"
 #include "Application.h"
 #include "glad/glad.h"
+#include "Input.h"
 namespace PIEngine {
 
 
@@ -26,6 +27,7 @@ namespace PIEngine {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
 
 			m_Window->OnUpdate();
 		}

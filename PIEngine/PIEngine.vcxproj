@@ -83,8 +83,7 @@
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -110,8 +109,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -138,8 +136,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -155,7 +152,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\PIEngine\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\PIEngine.h" />
     <ClInclude Include="src\PIEngine\Application.h" />
     <ClInclude Include="src\PIEngine\Core.h" />
@@ -164,21 +160,27 @@
     <ClInclude Include="src\PIEngine\Events\Event.h" />
     <ClInclude Include="src\PIEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\PIEngine\Events\MouseEvent.h" />
+    <ClInclude Include="src\PIEngine\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\PIEngine\Input.h" />
+    <ClInclude Include="src\PIEngine\KeyCodes.h" />
     <ClInclude Include="src\PIEngine\Layer.h" />
     <ClInclude Include="src\PIEngine\LayerStack.h" />
     <ClInclude Include="src\PIEngine\Log.h" />
+    <ClInclude Include="src\PIEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\PIEngine\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\pipch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\PIEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\PIEngine\Application.cpp" />
+    <ClCompile Include="src\PIEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\PIEngine\Layer.cpp" />
     <ClCompile Include="src\PIEngine\LayerStack.cpp" />
     <ClCompile Include="src\PIEngine\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\pipch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

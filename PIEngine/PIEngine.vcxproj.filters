@@ -7,8 +7,14 @@
     <Filter Include="PIEngine\Events">
       <UniqueIdentifier>{D8478151-44D3-EE15-4DE4-710AB9EE4A16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PIEngine\ImGui">
+      <UniqueIdentifier>{9E62566F-8A30-4A75-73C4-BA9B5F3126DA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\PIEngine\Events\MouseEvent.h">
       <Filter>PIEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\PIEngine\ImGui\ImGuiLayer.h">
+      <Filter>PIEngine\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\PIEngine\Layer.h">
       <Filter>PIEngine</Filter>
     </ClInclude>
@@ -49,16 +58,24 @@
     <ClInclude Include="src\PIEngine\Window.h">
       <Filter>PIEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\pipch.h" />
-    <ClInclude Include="src\PIEngine\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\PIEngine\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\PIEngine\KeyCodes.h" />
+    <ClInclude Include="src\PIEngine\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PIEngine\Application.cpp">
       <Filter>PIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PIEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>PIEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\PIEngine\Layer.cpp">
       <Filter>PIEngine</Filter>
@@ -69,11 +86,13 @@
     <ClCompile Include="src\PIEngine\Log.cpp">
       <Filter>PIEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\pipch.cpp" />
-    <ClCompile Include="src\PIEngine\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

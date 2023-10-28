@@ -38,6 +38,8 @@ namespace PIEngine {
 		virtual void SetVSync(bool enable) = 0;
 		virtual bool IsVSync() const = 0;
 
+		virtual void* GetNativeWindow() const = 0;//void* 是因为具体实现不同，不一定是GLFWwindow，也肯是其他库来实现
+
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }

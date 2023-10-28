@@ -11,12 +11,18 @@ public:
 
 	void OnUpdate() override
 	{
-		PI_INFO("ExampleLayer::Update");
+
+		if (PIEngine::Input::IsKeyPressed(PI_KEY_TAB))
+			PI_TRACE("Tab key is pressed(poll)!");
 	}
 
 	void OnEvent(PIEngine::Event& event) override
 	{
-		PI_TRACE("{0}", event);
+		if (event.GetEventType() == PIEngine::EventType::KeyPressed)
+		{
+			if (PIEngine::Input::IsKeyPressed(PI_KEY_TAB))
+				PI_TRACE("Tab key is pressed(event)!");
+		}
 	}
 };
 

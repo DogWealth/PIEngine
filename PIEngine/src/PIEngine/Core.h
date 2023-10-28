@@ -10,6 +10,11 @@
 	#error PIEngine only support windows!
 #endif
 
+#ifdef PI_DEBUG
+	#define PI_ENABLE_ASSERTS
+#endif // PI_DEBUG
+
+
 #ifdef PI_ENABLE_ASSERTS
 	#define PI_ASSERT(x, ...) {if(!(x)) {PI_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();} }
 	#define PI_CORE_ASSERT(x, ...) {if(!(x)) {PI_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();} }
