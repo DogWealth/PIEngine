@@ -7,3 +7,6 @@
 [submodule "PIEngine/vendor/imgui"]
 	path = PIEngine/vendor/imgui
 	url = https://github.com/DogWealth/imgui
+[submodule "PIEngine/vendor/glm"]
+	path = PIEngine/vendor/glm
+	url = https://github.com/g-truc/glm
