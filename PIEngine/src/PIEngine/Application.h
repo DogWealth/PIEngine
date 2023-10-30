@@ -4,6 +4,7 @@
 #include "PIEngine/LayerStack.h"
 #include "Window.h"
 #include "PIEngine/Events/ApplicationEvent.h"
+#include "PIEngine/ImGui/ImGuiLayer.h"
 
 namespace PIEngine {
 
@@ -27,6 +28,8 @@ namespace PIEngine {
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		//std::unique_ptr<ImGuiLayer> m_ImGuiLayer;//所有权要转移到layerstack，不能用unique_ptr
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
