@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef PI_PLATFORM_WINDOWS
+#if PI_DYNAMIC_LINK
 	#ifdef PI_BUILD_DLL
 		#define PI_API __declspec(dllexport)
 	#else
 		#define PI_API __declspec(dllimport)
 	#endif
+#else
+	#define PI_API
+#endif
 #else
 	#error PIEngine only support windows!
 #endif
