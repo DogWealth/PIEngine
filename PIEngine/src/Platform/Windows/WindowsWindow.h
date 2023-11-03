@@ -1,6 +1,7 @@
 #pragma once
 #include "PIEngine/Window.h"
 #include "GLFW/glfw3.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace PIEngine {
 	class WindowsWindow : public Window
@@ -26,6 +27,8 @@ namespace PIEngine {
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
+
 		struct WindowData
 		{
 			std::string Title;
