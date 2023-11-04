@@ -13,6 +13,11 @@ namespace PIEngine {
 		glfwMakeContextCurrent(m_WindowHandle);//设置参数window中的窗口所关联的OpenGL环境为当前环境
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		PI_CORE_ASSERT(status, "Falied to initialize Glad!");
+
+		PI_CORE_INFO("OpenGL Info: ");
+		PI_CORE_INFO("Vendor: {0}", (const char*)glGetString(GL_VENDOR));
+		PI_CORE_INFO("Renderer: {0}", (const char*)glGetString(GL_RENDERER));
+		PI_CORE_INFO("Version: {0}", (const char*)glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers()
