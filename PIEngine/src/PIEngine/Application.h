@@ -6,6 +6,7 @@
 #include "PIEngine/Events/ApplicationEvent.h"
 #include "PIEngine/ImGui/ImGuiLayer.h"
 #include "PIEngine/Renderer/Shader.h"
+#include "PIEngine/Renderer/Buffer.h"
 
 namespace PIEngine {
 
@@ -34,8 +35,10 @@ namespace PIEngine {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
 		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 	private:
 		static Application* s_Instance;
