@@ -8,10 +8,10 @@ namespace PIEngine {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
-			PI_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
-		case RendererAPI::OpenGL:
-			return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::None:
+				PI_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+			case RendererAPI::OpenGL:
+				return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		PI_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -22,10 +22,10 @@ namespace PIEngine {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
-			PI_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
-		case RendererAPI::OpenGL:
-			return new OpenGLIndexBuffer(indices, size);
+			case RendererAPI::None:
+				PI_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+			case RendererAPI::OpenGL:
+				return new OpenGLIndexBuffer(indices, size);
 		}
 
 		PI_CORE_ASSERT(false, "Unknown RendererAPI!");

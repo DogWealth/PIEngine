@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\PIEngine.h" />
     <ClInclude Include="src\PIEngine\Application.h" />
     <ClInclude Include="src\PIEngine\Core.h" />
@@ -584,8 +585,10 @@
     <ClInclude Include="vendor\glm\glm\vec3.hpp" />
     <ClInclude Include="vendor\glm\glm\vec4.hpp" />
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
+    <ClInclude Include="src\PIEngine\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\PIEngine\Application.cpp" />
     <ClCompile Include="src\PIEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\PIEngine\ImGui\ImGuiLayer.cpp" />
@@ -602,6 +605,7 @@
     <ClCompile Include="src\pipch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\PIEngine\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
