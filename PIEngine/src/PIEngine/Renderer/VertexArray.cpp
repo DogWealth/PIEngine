@@ -9,9 +9,9 @@ namespace PIEngine {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 				PI_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLVertexArray();
 		}
 
