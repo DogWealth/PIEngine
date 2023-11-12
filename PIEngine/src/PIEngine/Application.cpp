@@ -1,8 +1,8 @@
 #include "pipch.h"
-#include "Application.h"
 #include "Input.h"
 #include "PIEngine/Renderer/Renderer.h"
 #include "PIEngine/Renderer/RenderCommand.h"
+#include "Application.h"
 
 namespace PIEngine {
 
@@ -11,6 +11,7 @@ namespace PIEngine {
 
 
 	Application::Application()
+		: m_Camera(-1.28f, 1.28f, -0.72f, 0.72f)
 	{
 		PI_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -53,9 +54,11 @@ namespace PIEngine {
 
 			layout(location = 0) in vec3 a_Position;
 
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -84,10 +87,14 @@ namespace PIEngine {
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			static float rotation = 0;
+			m_Camera.SetRotation(rotation);
 
-			m_Shader->Bind();
-			Renderer::Submit(m_VertexArray);
+			rotation += 0.05;
+
+			Renderer::BeginScene(m_Camera);
+
+			Renderer::Submit(m_VertexArray, m_Shader);
 
 			Renderer::EndScene();
 

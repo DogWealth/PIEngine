@@ -8,6 +8,7 @@
 #include "PIEngine/Renderer/Shader.h"
 #include "PIEngine/Renderer/Buffer.h"
 #include "PIEngine/Renderer/VertexArray.h"
+#include "PIEngine/Renderer/OrthographicCamera.h"
 
 namespace PIEngine {
 
@@ -38,6 +39,8 @@ namespace PIEngine {
 
 		std::shared_ptr<Shader> m_Shader;
 		std::shared_ptr<VertexArray> m_VertexArray;
+
+		OrthographicCamera m_Camera;
 
 	private:
 		static Application* s_Instance;

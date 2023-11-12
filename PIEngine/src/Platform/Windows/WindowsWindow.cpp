@@ -63,6 +63,8 @@ namespace PIEngine {
 
 				WindowResizeEvent event(width, height);
 				data.EventCallback(event);
+
+				//PI_CORE_INFO(event);
 			});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)

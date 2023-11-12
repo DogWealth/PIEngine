@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\PIEngine\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\PIEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\PIEngine\Renderer\RendererAPI.h" />
@@ -591,6 +592,7 @@
     <ClInclude Include="src\PIEngine\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\PIEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\PIEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\PIEngine\Renderer\RendererAPI.cpp" />
