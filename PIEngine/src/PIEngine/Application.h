@@ -4,11 +4,10 @@
 #include "PIEngine/LayerStack.h"
 #include "Window.h"
 #include "PIEngine/Events/ApplicationEvent.h"
+
+#include "PIEngine/Core/Timestep.h"
+
 #include "PIEngine/ImGui/ImGuiLayer.h"
-#include "PIEngine/Renderer/Shader.h"
-#include "PIEngine/Renderer/Buffer.h"
-#include "PIEngine/Renderer/VertexArray.h"
-#include "PIEngine/Renderer/OrthographicCamera.h"
 
 namespace PIEngine {
 
@@ -31,16 +30,13 @@ namespace PIEngine {
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		//std::unique_ptr<ImGuiLayer> m_ImGuiLayer;//所有权要转移到layerstack，不能用unique_ptr
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		OrthographicCamera m_Camera;
+		float m_LastFrameTime = 0.f;
 
 	private:
 		static Application* s_Instance;
