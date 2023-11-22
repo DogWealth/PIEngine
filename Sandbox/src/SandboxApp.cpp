@@ -1,11 +1,14 @@
 #include<PIEngine.h>
 #include "imgui/imgui.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public PIEngine::Layer
 {
 public:
 	ExampleLayer()
-		:Layer("Example"), m_Camera(-1.28f, 1.28f, -0.72f, 0.72f), m_CameraPosition(0.f, 0.f, 0.f)
+		:Layer("Example"), m_Camera(-1.28f, 1.28f, -0.72f, 0.72f), m_CameraPosition(0.f, 0.f, 0.f), m_SquarePosition(0.f)
 	{
 		//vertex array
 		m_VertexArray.reset(PIEngine::VertexArray::Create());
@@ -40,10 +43,11 @@ public:
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			void main()
 			{
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -52,13 +56,15 @@ public:
 
 			layout(location = 0) out vec4 color;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(0.8, 0.2, 0.3, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_Shader.reset(new PIEngine::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(PIEngine::Shader::Create(vertexSrc, fragmentSrc));
 	}
 
 	void OnUpdate(PIEngine::Timestep timestep) override
@@ -82,6 +88,18 @@ public:
 
 		if (PIEngine::Input::IsKeyPressed(PI_KEY_D))
 			m_CameraRotation -= m_CameraRotationSpeed * timestep;
+		/************************************************/
+		if (PIEngine::Input::IsKeyPressed(PI_KEY_J))
+			m_SquarePosition.x -= m_SquareMoveSpeed * timestep;
+
+		if (PIEngine::Input::IsKeyPressed(PI_KEY_L))
+			m_SquarePosition.x += m_SquareMoveSpeed * timestep;
+
+		if (PIEngine::Input::IsKeyPressed(PI_KEY_I))
+			m_SquarePosition.y -= m_SquareMoveSpeed * timestep;
+
+		if (PIEngine::Input::IsKeyPressed(PI_KEY_K))
+			m_SquarePosition.y += m_SquareMoveSpeed * timestep;
 
 
 		PIEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -93,13 +111,29 @@ public:
 
 		PIEngine::Renderer::BeginScene(m_Camera);
 
-		PIEngine::Renderer::Submit(m_VertexArray, m_Shader);
+		glm::mat4 transform = glm::translate(glm::mat4(1.f), m_SquarePosition);
+		glm::mat4 scale = glm::scale(glm::mat4(1.f), glm::vec3(0.2f));
+
+		std::dynamic_pointer_cast<PIEngine::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
+		for (int i = -1; i < 2; i++)
+		{
+			glm::vec3 pos(i * 0.5f, 0.0f, 0.0f);
+			glm::mat4 transform = glm::translate(glm::mat4(1.f), pos) * scale;
+
+			PIEngine::Renderer::Submit(m_VertexArray, m_Shader, transform);
+		}
+
+		PIEngine::Renderer::Submit(m_VertexArray, m_Shader, transform);
 
 		PIEngine::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override
 	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(PIEngine::Event& event) override
@@ -116,7 +150,12 @@ private:
 	float m_CameraRotation = 0.f;
 
 	float m_CameraMoveSpeed = 1.f;
-	float m_CameraRotationSpeed = 15.f;
+	float m_CameraRotationSpeed = 150.f;
+
+	glm::vec3 m_SquarePosition;
+	float m_SquareMoveSpeed = 1.f;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.4f };
 	
 };
 
