@@ -19,6 +19,7 @@
 
 #include "PIEngine/Renderer/Shader.h"
 #include "PIEngine/Renderer/Buffer.h"
+#include "PIEngine/Renderer/Texture.h"
 #include "PIEngine/Renderer/VertexArray.h"
 
 #include "PIEngine/Renderer/OrthographicCamera.h"

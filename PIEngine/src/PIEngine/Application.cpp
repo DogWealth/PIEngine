@@ -1,6 +1,7 @@
 #include "pipch.h"
 #include "Input.h"
 #include "Application.h"
+#include "PIEngine/Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>
 
@@ -14,9 +15,12 @@ namespace PIEngine {
 	{
 		PI_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(PI_BIND_EVENT_FN(Application::OnEvent));
 		m_Window->SetVSync(true);
+
+		Renderer::Init();
 
 		//m_ImGuiLayer = std::make_unique<ImGuiLayer>();//所有权要转移到layerstack，不能用unique_ptr
 		m_ImGuiLayer = new ImGuiLayer();

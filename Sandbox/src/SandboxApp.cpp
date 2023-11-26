@@ -13,17 +13,20 @@ public:
 		//vertex array
 		m_VertexArray.reset(PIEngine::VertexArray::Create());
 		//vertex buffer
-		float vertices[3 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f,
+		float vertices[4 * 5] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			 -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
 		};
-		std::shared_ptr<PIEngine::VertexBuffer> vertexBuffer;
+
+		PIEngine::Ref<PIEngine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(PIEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		{
 			PIEngine::BufferLayout layout = {
-			{PIEngine::ShaderDataType::Float3, "a_Position"}
+			{PIEngine::ShaderDataType::Float3, "a_Position"},
+			{PIEngine::ShaderDataType::Float2, "a_TexCoord"}
 			};
 
 			vertexBuffer->SetLayout(layout);
@@ -31,8 +34,8 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		//index buffer
-		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<PIEngine::IndexBuffer> indexBuffer;
+		uint32_t indices[6] = { 0, 1, 2 , 2, 3, 0};
+		PIEngine::Ref<PIEngine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(PIEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -51,10 +54,11 @@ public:
 			}
 		)";
 
+		
 		std::string fragmentSrc = R"(
 			#version 330 core
 
-			layout(location = 0) out vec4 color;
+			out vec4 color;
 
 			uniform vec3 u_Color;
 
@@ -65,6 +69,49 @@ public:
 		)";
 
 		m_Shader.reset(PIEngine::Shader::Create(vertexSrc, fragmentSrc));
+
+		/*************************************/
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+
+			layout(location = 0)out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(PIEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = PIEngine::Texture2D::Creat("E:/Pictures/test.png");
+		m_LogoTexture = PIEngine::Texture2D::Creat("E:/Pictures/ChernoLogo.png");
+
+		std::dynamic_pointer_cast<PIEngine::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<PIEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
 	}
 
 	void OnUpdate(PIEngine::Timestep timestep) override
@@ -114,17 +161,23 @@ public:
 		glm::mat4 transform = glm::translate(glm::mat4(1.f), m_SquarePosition);
 		glm::mat4 scale = glm::scale(glm::mat4(1.f), glm::vec3(0.2f));
 
+		std::dynamic_pointer_cast<PIEngine::OpenGLShader>(m_Shader)->Bind();
 		std::dynamic_pointer_cast<PIEngine::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int i = -1; i < 2; i++)
 		{
-			glm::vec3 pos(i * 0.5f, 0.0f, 0.0f);
+			glm::vec3 pos(i * 1.0f, 0.0f, 0.0f);
 			glm::mat4 transform = glm::translate(glm::mat4(1.f), pos) * scale;
 
 			PIEngine::Renderer::Submit(m_VertexArray, m_Shader, transform);
 		}
 
-		PIEngine::Renderer::Submit(m_VertexArray, m_Shader, transform);
+		m_Texture->Bind();
+		PIEngine::Renderer::Submit(m_VertexArray, m_TextureShader, transform);
+
+		m_LogoTexture->Bind();
+		PIEngine::Renderer::Submit(m_VertexArray, m_TextureShader, transform);
+
 
 		PIEngine::Renderer::EndScene();
 	}
@@ -142,8 +195,9 @@ public:
 
 
 private:
-	std::shared_ptr<PIEngine::Shader> m_Shader;
-	std::shared_ptr<PIEngine::VertexArray> m_VertexArray;
+	PIEngine::Ref<PIEngine::Shader> m_Shader, m_TextureShader;
+	PIEngine::Ref<PIEngine::VertexArray> m_VertexArray;
+	PIEngine::Ref<PIEngine::Texture2D> m_Texture, m_LogoTexture;
 
 	PIEngine::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
@@ -155,7 +209,7 @@ private:
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 1.f;
 
-	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.4f };
+	glm::vec3 m_SquareColor = { 1.0f, 0.3f, 0.4f };
 	
 };
 
